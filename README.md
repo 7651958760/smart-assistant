@@ -22,3 +22,39 @@ Upload PDF/TXT → get a summary, ask free-form questions, and test yourself in 
 ```bash
 git clone https://github.com/yourusername/smart-assistant.git
 cd smart-assistant
+🏛 Architecture & Reasoning Flow
+Frontend:
+Streamlit → user uploads document & interacts with modes
+
+Backend:
+LangChain + OpenAI:
+
+langchain_community.document_loaders: load PDF/TXT files
+
+langchain.text_splitter: split text into manageable chunks
+
+langchain_openai.OpenAIEmbeddings: create embeddings
+
+langchain_community.vectorstores: FAISS for vector DB
+
+langchain_openai.ChatOpenAI: answer questions & generate challenges
+
+Reasoning Modes:
+
+✅ Auto Summary: uses LLM to create ≤150 words summary
+
+✅ Ask Anything: question → retrieves matching chunk → answers + shows snippet as justification
+
+✅ Challenge Me: AI generates questions → user answers → AI checks & gives feedback with reference
+
+All answers are grounded in the uploaded document to reduce hallucination.
+
+📁 Project Structure
+plaintext
+Copy
+Edit
+smart-assistant/
+├── app.py                  # Streamlit frontend
+├── backend.py              # Core logic & AI reasoning
+├── requirements.txt        # All Python dependencies
+└── README.md               # Project documentation
